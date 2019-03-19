@@ -1,6 +1,7 @@
-##Table Details
-#HOD
-    Name           branch_id  Bracnch
+# Table Details
+## HOD
+    Name           branch_id  Branch
+    
     JC prasad      1          cse
     Unni Kartha G  2          ce
     Public         3          public
