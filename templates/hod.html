@@ -25,15 +25,43 @@
           </ul>
         </div>
     </nav>
+
+    {%if user.is_authenticated %}
     <ul class="sidenav" id="mobile">
         <li><a href="sass.html">Home</a></li>
         <li><a href="badges.html">Contact Us</a></li>
         <li><a href="collapsible.html">About Us</a></li>
     </ul>
     <div class="container center-align">
+      <table>
+        <thead>
+          <tr>
+              <th>Queries</th>
+              <th>Date of Query</th>
+          </tr>
+        </thead>
+
+        <tbody>
         {% for query in queries %}{% csrf_token %}
-        <li>{{query.query}}</li>
+        <tr>
+            <td>{{query.query}}</td>
+            <td>{{query.query_date}}</td>
+            <td><a class="waves-effect waves-light btn is-rounded">Reply</a></td>
+            <td><a class="waves-effect waves-light btn red lighten-1">Delete</a></td>
+        </tr>
         {%endfor%}
+        </tbody>
+      </table>
+     <!-- Hi {{ user.username }}!
+    <p><a href="{% url 'logout' %}">logout</a></p>
+    {% else %}
+    <p>You are not logged in</p>
+    <a href="#">login</a>
+    <p><h1>Please Login in!</h1></p>
+    {% endif %}-->
+
+
+
     </div> 
 
 <!-- Compiled and minified JavaScript -->
