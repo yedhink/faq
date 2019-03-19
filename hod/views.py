@@ -22,3 +22,8 @@ def on_submit(request):
     q = Question(branch_id=hod_object,query=query,query_date=timezone.now())
     q.save()
     return HttpResponseRedirect('/')
+
+def hod_view(request,hod_id):
+    query_hod=Question.objects.filter(branch_id=HOD.objects.get(pk=hod_id))
+    print(query_hod)
+    return render(request,'hod.html',{"queries":query_hod})
