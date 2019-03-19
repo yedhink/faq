@@ -35,7 +35,10 @@
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <button type="submit">Login</button>
+          <div class="row">
+              <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
+              </button>
+          </div>
         </form>
     </div> 
 <!-- Compiled and minified JavaScript -->
