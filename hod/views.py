@@ -1,16 +1,24 @@
 from django.shortcuts import render,redirect
 from django.template import loader
 from django.http import HttpResponse,HttpResponseRedirect
-
+from .models import HOD,Question
+from django.utils import timezone
 
 # Create your views here.
 def index(request):
-    template=loader.get_template('index.html')
-    return HttpResponse(content=template.render())
+    return render(request,'index.html')
 
 def on_submit(request):
-    query_obj={"choice":"","query":""}
-    query_obj["choice"]=request.GET.get('choice')
-    query_obj["query"]=request.GET.get('query-textarea')
-    print(query_obj)
+    choice=request.GET.get('choice')
+    query=request.GET.get('query-textarea')
+    if(choice == 'cse'):
+        branch =1
+    elif(choice == 'ce'):
+        branch = 2
+    else:
+        branch = 0  
+    hod_object = HOD.objects.get(pk=branch)
+    print("branch:{},query:{},time:{}".format(hod_object.name,query,timezone.now()))
+    q = Question(branch_id=hod_object,query=query,query_date=timezone.now())
+    q.save()
     return HttpResponseRedirect('/')
