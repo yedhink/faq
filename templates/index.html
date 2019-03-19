@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Query</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "hod/style.css" %}" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+     <!--Import Google Icon Font-->
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+     <!-- Jquery CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="nav-wrapper  deep-purple lighten-2">
+          <a href="#!" class="brand-logo">FISAT</a>
+          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="sass.html">Home</a></li>
+            <li><a href="badges.html">Contact Us</a></li>
+            <li><a href="collapsible.html">About Us</a></li>
+          </ul>
+        </div>
+    </nav>
+    <ul class="sidenav" id="mobile">
+        <li><a href="sass.html">Home</a></li>
+        <li><a href="badges.html">Contact Us</a></li>
+        <li><a href="collapsible.html">About Us</a></li>
+    </ul>
+    <div class="container center-align">
+        <div class="row">
+            <h1 id="faq-header">FAQ</h1>
+        </div>
+        <form class="query-form" method="GET" action="/success">
+            <div class="row">           
+                        <p>
+                            <label>
+                                <input name="choice" type="radio" value="public" checked />
+                                <span>Public</span>
+                            </label>
+                            <label>
+                                <input name="choice" type="radio" value="cse" />
+                                <span>CSE</span>
+                            </label>
+                            <label>
+                                <input name="choice" type="radio" value="me"  />
+                                <span>ME</span>
+                            </label>
+                            <label>
+                                <input name="choice" type="radio" value="eie"  />
+                                <span>EIE</span>
+                            </label>
+                            <label>
+                                <input name="choice" type="radio" value="eee"  />
+                                <span>EEE</span>
+                            </label>
+                            <label>
+                                <input name="choice" type="radio" value="ce"  />
+                                <span>CE</span>
+                            </label>
+                        </p>
+                </div>
+                <div class="row">
+                          <div class="row">
+                            <div class="input-field col s12">
+                              <textarea id="query-textarea" name="query-textarea" value="" class="materialize-textarea" minlength="10" required></textarea>
+                              <label for="query-textarea">Query</label>
+                            </div>
+                        </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+    </div>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</body>
+<script >
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+</script>
+</html>
