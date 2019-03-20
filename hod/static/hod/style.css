@@ -10,3 +10,10 @@
     margin-top:8px;
     margin-left: 30px ; 
 }
+.card{
+    min-height: 300px;
+}
+.nologin{
+    font:  2rem sans-serif;
+    padding-top:50px; 
+}

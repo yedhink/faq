@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HOD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "hod/style.css" %}" />
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
      <!--Import Google Icon Font-->
@@ -62,8 +64,23 @@
     </table>
   </div> 
 {% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">login</a>
+<div class="container center-align">
+    <div class="row">
+          <div class="card-panel deep-purple lighten-3 card nologin-div">
+            <div class="nologin">
+                <span class="white-text">
+                    You are not logged in
+                </span>
+                <p>
+                    <a class="waves-effect waves-light btn purple darken-3" href="{% url 'login' %}">
+                      <i class="material-icons right">arrow_forward</i>Login</a>
+    
+                </p>
+            </div>
+            
+          </div>
+      </div>
+</div>
 {% endif %}
     
 
