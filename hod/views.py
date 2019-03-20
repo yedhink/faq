@@ -34,9 +34,10 @@ def on_submit(request):
     return HttpResponseRedirect('/')
 
 def hod_view(request,hod_id):
-    query_hod=Question.objects.filter(branch_id=HOD.objects.get(branch_id=hod_id))
-    print(query_hod)
-    return render(request,'hod.html',{"queries":query_hod})
+    hod_obj=HOD.objects.get(branch_id=hod_id)
+    query_hod=Question.objects.filter(branch_id=hod_obj)
+    print('hod name:{}'.format(hod_obj.name))
+    return render(request,'hod.html',{"queries":query_hod,"hod":hod_obj})
 
 def login_success(request):
     b_id=HOD.objects.get(name=request.user).branch_id
