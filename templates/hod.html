@@ -33,10 +33,10 @@
     {% if user.is_authenticated %}
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col s5">
           Hi {{ user.username }}
         </div>
-        <div class="col">
+        <div class="col s2 offset-s5">
           <a href="{% url 'logout' %}">logout</a>
         </div>
       </div>

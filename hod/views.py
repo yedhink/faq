@@ -12,6 +12,7 @@ def index(request):
 def on_submit(request):
     choice=request.GET.get('choice')
     query=request.GET.get('query-textarea')
+    mail=request.GET.get('mail_id')
     if(choice == 'cse'):
         branch =1
     elif(choice =='ce'):
@@ -27,8 +28,8 @@ def on_submit(request):
     else:
         branch= 7  
     hod_object = HOD.objects.get(pk=branch)
-    print("branch:{},query:{},time:{}".format(hod_object.name,query,timezone.now()))
-    q = Question(branch_id=hod_object,query=query,query_date=timezone.now())
+    print("branch:{},query:{},time:{},mail{}".format(hod_object.name,query,timezone.now(),mail))
+    q = Question(branch_id=hod_object,query=query,query_date=timezone.now(),mail_id=mail)
     q.save()
     return HttpResponseRedirect('/')
 
