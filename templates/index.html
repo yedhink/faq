@@ -42,7 +42,8 @@
             <h1 id="faq-header">FAQ</h1>
         </div>
         
-        <form class="query-form" method="GET" action="/success">
+        <form class="query-form" method="POST" action="/success">
+            {% csrf_token%}
             <div class="row">           
                         <p>
                             <label>
@@ -104,6 +105,7 @@
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>
+                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
             </form>
     </div>
 <!-- Compiled and minified JavaScript -->
@@ -118,7 +120,8 @@
   });
   grecaptcha.ready(function() {
       grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {action: 'homepage'}).then(function(token) {
-        console.log(token)
+        document.getElementById("g-recaptcha-response").innerHTML=token;
+        console.log(document.getElementById("g-recaptcha-response").innerHTML);
       });
   });
 </script>
