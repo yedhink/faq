@@ -91,6 +91,14 @@
                         <label for="email">Email</label>
                     </div>
                 </div>
+                <div class="row ">
+                    <div class="col offset-s4">
+                            <script src="https://www.google.com/recaptcha/api.js?render=6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es"></script>
+                    </div>
+
+                </div>
+                
+
                       <div class="row">
                             <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
                                 <i class="material-icons right">send</i>
@@ -100,12 +108,18 @@
     </div>
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
+<!-- recaptcha JS -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
 <script >
   $(document).ready(function(){
     $('.sidenav').sidenav();
+  });
+  grecaptcha.ready(function() {
+      grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {action: 'homepage'}).then(function(token) {
+        console.log(token)
+      });
   });
 </script>
 </html>

@@ -122,6 +122,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Redirecting url after login
+# Redirecting url after login and logout
 LOGIN_REDIRECT_URL='/login_success'
 LOGOUT_REDIRECT_URL='/logout'
+
+# Email configurations default
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'leomv3@gmail.com'
+EMAIL_HOST_PASSWORD = '55555555555'
+EMAIL_PORT = 587
+
+# Google recaptchav3 secret code
+GOOGLE_RECAPTCHA_SECRET_KEY='6Lc495gUAAAAAB-OIwxwHSWmA9v2X-pIXqA5rqzY'
