@@ -1,5 +1,4 @@
 import urllib
-import urllib.request as urllib2
 import json
 
 from django.shortcuts import render,redirect
@@ -33,25 +32,26 @@ def on_submit(request):
     else:
         branch= 7
     # Starting reCaptcha Validation 
-    recaptcha_response=request.POST.get('g-recaptcha-response')
-    # url='https://www.google.com/recaptcha/api/siteverify'
-    # values={
-    #     'secret':settings.GOOGLE_RECAPTCHA_SECRET_KEY,
-    #     'response':recaptcha_response
-    # }
-    # data=urllib.parse.urlencode(values)
-    # req=urllib2.Request(url,data)
-    # response=urllib2.urlopen(req)
-    # result=json.load(response)
+    recaptcha_response=request.POST.get('g-recaptcha-response',"")
+    print("recaptcha response:{}".format(recaptcha_response))
+    url='https://www.google.com/recaptcha/api/siteverify'
+    values={
+        'secret':settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+        'response':recaptcha_response
+    }
+    data=urllib.parse.urlencode(values).encode()
+    req=urllib.request.Request(url,data=data)
+    response=urllib.request.urlopen(req)
+    result=json.loads(response.read().decode())
+    print("result:{}".format(result))
     # # FInished Validation
-    # if result['success']:
-    hod_object = HOD.objects.get(pk=branch)
-    print("branch:{},query:{},time:{},mail{}".format(hod_object.name,query,timezone.now(),mail))
-    print("token:{}".format(len(recaptcha_response)))
-        # q = Question(branch_id=hod_object,query=query,query_date=timezone.now(),mail_id=mail)
-        # q.save()
-    # else:
-        # messages.error(request,'Invalid reCATPCHA,Please try again')
+    if result['success']:
+        hod_object = HOD.objects.get(pk=branch)
+        print("branch:{},query:{},time:{},mail{}".format(hod_object.name,query,timezone.now(),mail))
+        ques = Question(branch_id=hod_object,query=query,query_date=timezone.now(),mail_id=mail)
+        ques.save()
+    else:
+        messages.error(request,'Invalid reCATPCHA,Please try again')
     return HttpResponseRedirect('/')
 
 def hod_view(request,hod_id):

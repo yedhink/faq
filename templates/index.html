@@ -14,6 +14,10 @@
 
      <!-- Jquery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- Google reCaptchav3 -->
+    <script src='https://www.google.com/recaptcha/api.js?render=6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es'></script>
+
 </head>
 <body>
     <nav>
@@ -42,7 +46,7 @@
             <h1 id="faq-header">FAQ</h1>
         </div>
         
-        <form class="query-form" method="POST" action="/success">
+        <form class="query-form" id="form" method="POST" action="/success">
             {% csrf_token%}
             <div class="row">           
                         <p>
@@ -94,18 +98,14 @@
                 </div>
                 <div class="row ">
                     <div class="col offset-s4">
-                            <script src="https://www.google.com/recaptcha/api.js?render=6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es"></script>
                     </div>
-
                 </div>
-                
-
                       <div class="row">
                             <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>
-                        <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                        <!-- <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> -->
             </form>
     </div>
 <!-- Compiled and minified JavaScript -->
@@ -117,12 +117,16 @@
 <script >
   $(document).ready(function(){
     $('.sidenav').sidenav();
-  });
-  grecaptcha.ready(function() {
-      grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {action: 'homepage'}).then(function(token) {
-        document.getElementById("g-recaptcha-response").innerHTML=token;
-        console.log(document.getElementById("g-recaptcha-response").innerHTML);
-      });
-  });
+    });
+    grecaptcha.ready(function() {
+        grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {action: 'success/'})
+        .then(function(token) {
+            var input=document.createElement('input');
+            input.setAttribute("type","hidden");
+            input.setAttribute("name","g-recaptcha-response")
+            input.setAttribute("value",token);
+            document.getElementById("form").appendChild(input);
+        });
+        });
 </script>
 </html>
