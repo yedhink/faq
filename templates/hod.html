@@ -63,26 +63,30 @@
       <div id="emailModal" class="modal">
               <div class="modal-content">
                 <h4>Send Reply</h4>
-
-                <div>
+                <form method="post" action="/send_query_response" >
+                {% csrf_token %}
+                  <div>
+                  <input  name="hod_id" type="hidden" value={{ query.branch_id.branch_id }}></input>
                   <div class="input-field">
-                    <input id="email" type="email" class="validate">
-                    <label for="email">Email ID <i class="material-icons">email</i> </label>
+                    <input id="email" name = "email" type="email" class="validate">
+                    <label for="email"><i class="material-icons">email</i> </label>
                   </div>
 
                   <div class="input-field">
-                    <input id="subject" type="text" class="validate">
+                    <input id="subject" name="subject" type="text" class="validate">
                     <label for="email">Subject:</label>
                   </div>
                   <div class="input-field">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <textarea id="textarea1"  name ="body" class="materialize-textarea"></textarea>
                     <label for="textarea1">Reply</label>
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <a class="waves-effect waves-light btn" href="#">Send</a>
+                <button class="waves-effect waves-light btn" href=" # " type="submit"><span style="padding-bottom:2rem;">Send</span> <i class="material-icons">arrow_forward</i></button> <!--% url email_send query.mail %-->
+             
               </div>
+              </form>
           </div>
       {%endfor%}
       </tbody>
