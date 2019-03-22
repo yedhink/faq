@@ -9,4 +9,5 @@ urlpatterns=[
     path('logout',views.logout,name="logout"),
     path('hod/<int:hod_id>/',views.hod_view,name="hod_view"),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('hod/<int:hod_id>/<int:q_id>/',views.del_item,name="del_item")
 ]

@@ -57,7 +57,7 @@
           <td>{{query.query}}</td>
           <td>{{query.query_date}}</td>
           <td><a class="waves-effect waves-light btn is-rounded">Reply</a></td>
-          <td><a class="waves-effect waves-light btn red lighten-1">Delete</a></td>
+          <td><a class="waves-effect waves-light btn red lighten-1" href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
       </tr>
       {%endfor%}
       </tbody>

@@ -63,5 +63,12 @@ def hod_view(request,hod_id):
 def login_success(request):
     b_id=HOD.objects.get(name=request.user).branch_id
     return HttpResponseRedirect('/hod/{}'.format(b_id))
+
 def logout(request):
     return render(request,'registration/logout.html')
+
+def del_item(request,hod_id,q_id):
+    del_ele=Question.objects.get(pk=q_id)
+    del_ele.delete()
+    return HttpResponseRedirect('/hod/{}'.format(hod_id))
+
