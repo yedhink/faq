@@ -1,120 +1,129 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>HOD</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static "hod/style.css" %}" />
-     <!-- Compiled and minified CSS -->
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-     <!-- Jquery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>HOD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static "hod/style.css" %}" />
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Jquery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
+
 <body>
-    <nav>
-        <div class="nav-wrapper  deep-purple lighten-2">
-          <a href="#!" class="brand-logo">FISAT</a>
-          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Home</a></li>
-            <li><a href="badges.html">Contact Us</a></li>
-            <li><a href="collapsible.html">About Us</a></li>
-          </ul>
-        </div>
-    </nav>
-    <ul class="sidenav" id="mobile">
+  <nav>
+    <div class="nav-wrapper  deep-purple lighten-2">
+      <a href="#!" class="brand-logo">FISAT</a>
+      <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
         <li><a href="sass.html">Home</a></li>
         <li><a href="badges.html">Contact Us</a></li>
         <li><a href="collapsible.html">About Us</a></li>
-    </ul>
-    {% if user.is_authenticated and hod.name == user.username %}
-    <div class="container">
-      <div class="row">
-        <div class="col s5">
-          Hi {{ user.username }}
-        </div>
-        <div class="col s2 offset-s5">
-          <a href="{% url 'logout' %}">logout</a>
-        </div>
+      </ul>
+    </div>
+  </nav>
+  <ul class="sidenav" id="mobile">
+    <li><a href="sass.html">Home</a></li>
+    <li><a href="badges.html">Contact Us</a></li>
+    <li><a href="collapsible.html">About Us</a></li>
+  </ul>
+  {% if user.is_authenticated and hod.name == user.username %}
+  <div class="container">
+    <div class="row">
+      <div class="col s5">
+        Hi {{ user.username }}
+      </div>
+      <div class="col s2 offset-s5">
+        <a href="{% url 'logout' %}">logout</a>
       </div>
     </div>
-    <div class="container center-align">
-      <table>
-        <thead>
-          <tr>
-            <th>Queries</th>
-            <th>Date of Query</th>
+  </div>
+  <div class="container center-align">
+    <table>
+      <thead>
+        <tr>
+          <th>Queries</th>
+          <th>Date of Query</th>
         </tr>
-        </thead>
+      </thead>
       <tbody>
-      {% for query in queries %}{% csrf_token %}
-      <tr>
+        {% for query in queries %}{% csrf_token %}
+        <tr>
           <td>{{query.query}}</td>
           <td>{{query.query_date}}</td>
           <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#{{ query.pk }}">Reply</a></td>
-          <td><a class="waves-effect waves-light btn red lighten-1" href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
-      </tr>
+          <td><a class="waves-effect waves-light btn red lighten-1"
+              href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
+        </tr>
 
-      <div id={{query.pk}} class="modal">
-              <div class="modal-content">
-                <h4>Send Reply</h4>
+        <div id={{query.pk}} class="modal">
+          <div class="modal-content">
+            <h4>Send Reply</h4>
+            <form method="post" action="/send_query_response">
+              {% csrf_token %}
+              <div>
+                <input name="hod_id" type="hidden" value={{ query.branch_id.branch_id }}></input>
+                <div class="input-field">
+                  <input id="email" name="email" value={{query.mail_id}} type="email" class="validate">
+                  <label for="email"><i class="material-icons">email</i> </label>
+                </div>
 
-                <div>
-                  <div class="input-field">
-                    <input id="email" type="email" value={{query.mail_id}} class="validate">
-                    <label for="email">Email ID <i class="material-icons">email</i> </label>
-                  </div>
-
-                  <div class="input-field">
-                    <input id="subject" type="text" class="validate">
-                    <label for="email">Subject:</label>
-                  </div>
-                  <div class="input-field">
-                    <textarea id="textarea1" class="materialize-textarea"></textarea>
-                    <label for="textarea1">Reply</label>
-                  </div>
+                <div class="input-field">
+                  <input id="subject" name="subject" type="text" class="validate">
+                  <label for="email">Subject:</label>
+                </div>
+                <div class="input-field">
+                  <textarea id="textarea1" name="body" class="materialize-textarea"></textarea>
+                  <label for="textarea1">Reply</label>
                 </div>
               </div>
-              <div class="modal-footer">
-                <a class="waves-effect waves-light btn" href="#">Send</a>
-              </div>
           </div>
-      {%endfor%}
+          <div class="modal-footer">
+            <button class="waves-effect waves-light btn" type="submit"><span
+                style="padding-bottom:2rem;">Send</span> <i class="material-icons">arrow_forward</i>
+            </button>
+          </div>
+          </form>
+        </div>
+        {%endfor%}
       </tbody>
     </table>
   </div>
-{% else %}
-<div class="container center-align">
+  {% else %}
+  <div class="container center-align">
     <div class="row">
-          <div class="card-panel deep-purple lighten-3 card nologin-div">
-            <div class="nologin">
-                <span class="white-text">
-                    You are not logged in
-                </span>
-                <p>
-                    <a class="waves-effect waves-light btn purple darken-3" href="{% url 'login' %}">
-                      <i class="material-icons right">arrow_forward</i>Login</a>
-    
-                </p>
-            </div>
-            
-          </div>
+      <div class="card-panel deep-purple lighten-3 card nologin-div">
+        <div class="nologin">
+          <span class="white-text">
+            You are not logged in
+          </span>
+          <p>
+            <a class="waves-effect waves-light btn purple darken-3" href="{% url 'login' %}">
+              <i class="material-icons right">arrow_forward</i>Login</a>
+
+          </p>
+        </div>
+
       </div>
-</div>
-{% endif %}
+    </div>
+  </div>
+  {% endif %}
 
 
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script>
- $(document).ready(function(){
-    $('.modal').modal();
-  });
-</script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('.modal').modal();
+    });
+  </script>
 </body>
+
 </html>

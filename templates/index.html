@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,29 +10,30 @@
     <link rel="stylesheet" href="{% static "hod/style.css" %}" />
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-     <!--Import Google Icon Font-->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-     <!-- Jquery CDN -->
+    <!-- Jquery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    
+
     <!-- Google reCaptchav3 -->
     <script src='https://www.google.com/recaptcha/api.js?render=6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es'></script>
 
 </head>
+
 <body>
     <nav>
         <div class="nav-wrapper  deep-purple lighten-2">
-          <a href="#!" class="brand-logo">FISAT</a>
-          <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-          <ul class="right hide-on-med-and-down">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a class="waves-effect waves-teal btn deep-purple darken-1" href="accounts/login">
+            <a href="#!" class="brand-logo">FISAT</a>
+            <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a class="waves-effect waves-teal btn deep-purple darken-1" href="accounts/login">
                         Login
                     </a></li>
-          </ul>
+            </ul>
         </div>
     </nav>
     <ul class="sidenav" id="mobile">
@@ -47,84 +49,88 @@
         <form class="query-form" id="form" method="POST" action="/success">
             {% csrf_token%}
             <div class="row">
-                        <p>
-                            <label>
-                                <input name="choice" style="padding-right:35px;" type="radio" value="public" checked />
-                                <span>Public</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="cse" />
-                                <span>CSE</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="me"  />
-                                <span>ME</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="eie"  />
-                                <span>EIE</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="eee"  />
-                                <span>EEE</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="ec"  />
-                                <span>EC</span>
-                            </label>
-                            <label>
-                                <input name="choice" class="dept_choice" type="radio" value="ce"  />
-                                <span>CE</span>
-                            </label>
-                        </p>
-                </div>
+                <p>
+                    <label>
+                        <input name="choice" style="padding-right:35px;" type="radio" value="public" checked />
+                        <span>Public</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="cse" />
+                        <span>CSE</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="me" />
+                        <span>ME</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="eie" />
+                        <span>EIE</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="eee" />
+                        <span>EEE</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="ec" />
+                        <span>EC</span>
+                    </label>
+                    <label>
+                        <input name="choice" class="dept_choice" type="radio" value="ce" />
+                        <span>CE</span>
+                    </label>
+                </p>
+            </div>
+            <div class="row">
                 <div class="row">
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <textarea id="query-textarea" name="query-textarea" value="" class="materialize-textarea" minlength="10" required></textarea>
-                              <label for="query-textarea">Query</label>
-                            </div>
-                        </div>
-                </div>
-                
-            
-                <div class="row">
-                    <div class="input-field col offset-s3 s5">
-                        <input id="email" type="email" class="validate" name="mail_id" required>
-                        <label for="email">Email</label>
+                    <div class="input-field col s12">
+                        <textarea id="query-textarea" name="query-textarea" value="" class="materialize-textarea"
+                            minlength="10" required></textarea>
+                        <label for="query-textarea">Query</label>
                     </div>
                 </div>
-                <div class="row ">
-                    <div class="col offset-s4">
-                    </div>
+            </div>
+
+
+            <div class="row">
+                <div class="input-field col offset-s3 s5">
+                    <input id="email" type="email" class="validate" name="mail_id" required>
+                    <label for="email">Email</label>
                 </div>
-                      <div class="row">
-                            <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
-                                <i class="material-icons right">send</i>
-                            </button>
-                        </div>
-                        <!-- <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> -->
-            </form>
+            </div>
+            <div class="row ">
+                <div class="col offset-s4">
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+            <!-- <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response"> -->
+        </form>
     </div>
-<!-- Compiled and minified JavaScript -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<!-- recaptcha JS -->
-<script src='https://www.google.com/recaptcha/api.js'></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- recaptcha JS -->
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 
 </body>
-<script >
-  $(document).ready(function(){
-    $('.sidenav').sidenav();
+<script>
+    $(document).ready(function () {
+        $('.sidenav').sidenav();
     });
-    grecaptcha.ready(function() {
-        grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {action: 'success/'})
-        .then(function(token) {
-            var input=document.createElement('input');
-            input.setAttribute("type","hidden");
-            input.setAttribute("name","g-recaptcha-response")
-            input.setAttribute("value",token);
-            document.getElementById("form").appendChild(input);
-        });
-        });
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6Lc495gUAAAAAOt8dYUsdyRPYLwHzaEw7Ud0Z4es', {
+                action: 'success/'
+            })
+            .then(function (token) {
+                var input = document.createElement('input');
+                input.setAttribute("type", "hidden");
+                input.setAttribute("name", "g-recaptcha-response")
+                input.setAttribute("value", token);
+                document.getElementById("form").appendChild(input);
+            });
+    });
 </script>
+
 </html>

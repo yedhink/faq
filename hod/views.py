@@ -8,6 +8,7 @@ from .models import HOD,Question
 from django.utils import timezone
 from django.contrib import messages
 from django.conf import settings
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -72,3 +73,12 @@ def del_item(request,hod_id,q_id):
     del_ele.delete()
     return HttpResponseRedirect('/hod/{}'.format(hod_id))
 
+def send_query_response(request):
+    hod_id = request.POST.get("hod_id","")
+    mail = request.POST.get("email","")
+    subject = request.POST.get("subject")
+    body = request.POST.get("body")
+    print("id:{},mail:{},sub:{},body:{}".format(hod_id,mail,subject,body))
+    val=send_mail(subject,body,'leomv3@gmail.com',[mail])
+    print("mail send :),val{}".format(val))
+    return HttpResponseRedirect('/hod/{}'.format(hod_id))
