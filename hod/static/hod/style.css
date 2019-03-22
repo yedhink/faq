@@ -17,3 +17,7 @@
     font:  2rem sans-serif;
     padding-top:50px; 
 }
+
+.dept_choice > span{
+    padding-right:35px !important;
+}

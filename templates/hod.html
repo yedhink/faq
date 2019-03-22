@@ -56,13 +56,38 @@
       <tr>
           <td>{{query.query}}</td>
           <td>{{query.query_date}}</td>
-          <td><a class="waves-effect waves-light btn is-rounded">Reply</a></td>
+          <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#emailModal">Reply</a></td>
           <td><a class="waves-effect waves-light btn red lighten-1" href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
       </tr>
+
+      <div id="emailModal" class="modal">
+              <div class="modal-content">
+                <h4>Send Reply</h4>
+
+                <div>
+                  <div class="input-field">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email ID <i class="material-icons">email</i> </label>
+                  </div>
+
+                  <div class="input-field">
+                    <input id="subject" type="text" class="validate">
+                    <label for="email">Subject:</label>
+                  </div>
+                  <div class="input-field">
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Reply</label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <a class="waves-effect waves-light btn" href="#">Send</a>
+              </div>
+          </div>
       {%endfor%}
       </tbody>
     </table>
-  </div> 
+  </div>
 {% else %}
 <div class="container center-align">
     <div class="row">
@@ -82,9 +107,14 @@
       </div>
 </div>
 {% endif %}
-    
+
 
 <!-- Compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>
+ $(document).ready(function(){
+    $('.modal').modal();
+  });
+</script>
 </body>
 </html>
