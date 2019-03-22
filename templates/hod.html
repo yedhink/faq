@@ -56,17 +56,17 @@
       <tr>
           <td>{{query.query}}</td>
           <td>{{query.query_date}}</td>
-          <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#emailModal">Reply</a></td>
+          <td><a class="waves-effect waves-light btn is-rounded  modal-trigger" href="#{{ query.pk }}">Reply</a></td>
           <td><a class="waves-effect waves-light btn red lighten-1" href="{% url 'del_item' query.branch_id.branch_id query.pk %}">Delete</a></td>
       </tr>
 
-      <div id="emailModal" class="modal">
+      <div id={{query.pk}} class="modal">
               <div class="modal-content">
                 <h4>Send Reply</h4>
 
                 <div>
                   <div class="input-field">
-                    <input id="email" type="email" class="validate">
+                    <input id="email" type="email" value={{query.mail_id}} class="validate">
                     <label for="email">Email ID <i class="material-icons">email</i> </label>
                   </div>
 
