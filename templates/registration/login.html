@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>HOD</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "hod/style.css" %}" />
      <!-- Compiled and minified CSS -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
      <!--Import Google Icon Font-->
@@ -31,13 +33,18 @@
         <li><a href="collapsible.html">About Us</a></li>
     </ul>
     <div class="container center-align">
-        <h2>Login</h2>
+        <h2 id="faq-header">Login</h2>
         <form method="post">
           {% csrf_token %}
-          {{ form.as_p }}
-          <div class="row">
-              <button class="btn waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Submit
-              </button>
+            <div class="z-depth-1 grey lighten-5 " style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+              <div class="row">
+                  {{ form.as_p }}
+              </div>  
+              <div class="row">
+                  <button class="btn col s12 btn-large waves-effect waves-light deep-purple lighten-2" type="submit" id="submit">Login
+
+              </div>
+            </div>
           </div>
         </form>
     </div> 
