@@ -25,9 +25,12 @@
           <a href="#!" class="brand-logo">FISAT</a>
           <a href="#" data-target="mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="sass.html">Home</a></li>
-            <li><a href="badges.html">Contact Us</a></li>
-            <li><a href="collapsible.html">About Us</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">About Us</a></li>
+            <li><a class="waves-effect waves-teal btn deep-purple darken-1" href="accounts/login">
+                        Login
+                    </a></li>
           </ul>
         </div>
     </nav>
@@ -37,18 +40,13 @@
         <li><a href="collapsible.html">About Us</a></li>
     </ul>
     <div class="container center-align">
-            <div class="row right-align login-div">
-                    <a class="waves-effect waves-teal btn deep-purple darken-1" href="accounts/login">
-                        Login
-                    </a>
-            </div>
         <div class="row">
             <h1 id="faq-header">FAQ</h1>
         </div>
-        
+
         <form class="query-form" id="form" method="POST" action="/success">
             {% csrf_token%}
-            <div class="row">           
+            <div class="row">
                         <p>
                             <label>
                                 <input name="choice" type="radio" value="public" checked />
